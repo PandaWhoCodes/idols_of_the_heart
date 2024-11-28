@@ -8,11 +8,11 @@ anthropic = Anthropic(api_key=st.secrets["ANTHROPIC_API_KEY"])
 questions = [
     {
         "question": "What one thing do you most hope is in your future?",
-        "helper": "Career success? A certain salary? Owning your own home? Owning a second one at the beach? Getting married? Seeing your kids grow up to be successful? Having the respect of your teammates? Going pro? Being loved and respected by your colleagues? What is it that, without it, life would hardly seem worth living?"
+        "helper": "Career success? A certain salary? Owning your own home? Owning a second one at the beach? Getting married? Seeing your kids grow up to be successful? Having the respect of your teammates? Going pro? Being loved and respected by your colleagues? What is it that, without it, life would hardly seem worth living?",
     },
     {
         "question": "What is the one thing you most worry about losing?",
-        "helper": "What one thing could you just absolutely not get along without? Your family? Your job? The love of your spouse? The respect of your kids?"
+        "helper": "What one thing could you just absolutely not get along without? Your family? Your job? The love of your spouse? The respect of your kids?",
     },
     # {
     #     "question": "If you could change one thing about yourself right now, what would it be?",
@@ -40,13 +40,15 @@ questions = [
     # }
 ]
 
+
 def init_session_state():
-    if 'current_question' not in st.session_state:
+    if "current_question" not in st.session_state:
         st.session_state.current_question = 0
-    if 'answers' not in st.session_state:
+    if "answers" not in st.session_state:
         st.session_state.answers = {}
-    if 'analysis_complete' not in st.session_state:
+    if "analysis_complete" not in st.session_state:
         st.session_state.analysis_complete = False
+
 
 def get_idol_analysis(answers):
     prompt = f"""Based on these responses to questions about life priorities and values, identify potential idols (things that might be taking the place of God) in this person's heart. Be gentle but direct in your analysis.
@@ -59,26 +61,29 @@ Please provide a thoughtful analysis of potential idols, explaining why they mig
     response = anthropic.messages.create(
         model="claude-3-5-sonnet-20241022",
         max_tokens=5000,
-        messages=[
-            {"role": "user", "content": prompt}
-        ]
+        messages=[{"role": "user", "content": prompt}],
     )
     return response.content
 
+
 def main():
     st.title("Heart Idol Analysis")
-    st.write("Answer these questions honestly to help identify potential idols in your heart.")
-    
+    st.write(
+        "Answer these questions honestly to help identify potential idols in your heart."
+    )
+
     init_session_state()
-    
+
     if st.session_state.current_question < len(questions):
         current_q = questions[st.session_state.current_question]
-        
+
         st.subheader(current_q["question"])
         st.write(current_q["helper"])
-        
-        answer = st.text_area("Your answer:", key=f"q_{st.session_state.current_question}")
-        
+
+        answer = st.text_area(
+            "Your answer:", key=f"q_{st.session_state.current_question}"
+        )
+
         if st.button("Next"):
             if answer:
                 st.session_state.answers[current_q["question"]] = answer
@@ -86,21 +91,43 @@ def main():
                 st.rerun()
             else:
                 st.warning("Please provide an answer before continuing.")
-                
+
     elif not st.session_state.analysis_complete:
-        formatted_answers = "\n\n".join([f"Q: {q}\nA: {a}" for q, a in st.session_state.answers.items()])
+        formatted_answers = "\n\n".join(
+            [f"Q: {q}\nA: {a}" for q, a in st.session_state.answers.items()]
+        )
         analysis = get_idol_analysis(formatted_answers)
         st.session_state.analysis = analysis
         st.session_state.analysis_complete = True
         st.rerun()
-        
+
     else:
         st.subheader("Analysis of Potential Heart Idols")
-        st.write(st.session_state.analysis)
-        
+
+        # Convert the message content to string and clean it up
+        analysis_text = str(st.session_state.analysis)
+        analysis_text = analysis_text.replace("TextBlock(text='", "")
+        analysis_text = analysis_text.replace("', type='text')", "")
+        analysis_text = analysis_text.replace("\\n", "\n")
+        analysis_text = analysis_text.replace("\\'", "'")
+
+        # Split the text into sections
+        sections = analysis_text.split("\n\n")
+
+        for section in sections:
+            if section.strip():
+                if ":" in section:
+                    title, content = section.split(":", 1)
+                    st.markdown(f"**{title}:**")
+                    st.write(content)
+                else:
+                    st.write(section)
+
+        st.divider()
         if st.button("Start Over"):
             st.session_state.clear()
             st.rerun()
+
 
 if __name__ == "__main__":
     main()
