@@ -13,7 +13,7 @@ questions = [
     {
         "question": "What is the one thing you most worry about losing?",
         "helper": "What one thing could you just absolutely not get along without? Your family? Your job? The love of your spouse? The respect of your kids?"
-    # },
+    },
     # {
     #     "question": "If you could change one thing about yourself right now, what would it be?",
     #     "helper": "Would you lose thirty pounds? Would you change your looks? Your marital status? Your job? Your zip code? Would you have your kids come home? There is certainly nothing wrong with desiring to change our lives. But when we could't imagine being happy unless something changes, we have an idol."
