@@ -41,9 +41,11 @@ questions = [
 ]
 
 
-def init_session_state():
-    if "current_question" not in st.session_state:
+def init_session_state(restart=False):
+    if "current_question" not in st.session_state or not restart:
         st.session_state.current_question = 0
+        st.session_state.answers = {}
+        st.session_state.analysis_complete = False
     if "answers" not in st.session_state:
         st.session_state.answers = {}
     if "analysis_complete" not in st.session_state:
