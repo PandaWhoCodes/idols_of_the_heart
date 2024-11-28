@@ -104,29 +104,28 @@ def main():
     else:
         st.subheader("Analysis of Potential Heart Idols")
 
-        # Convert the message content to string and clean it up
+        # Clean up the analysis text
         analysis_text = str(st.session_state.analysis)
         analysis_text = analysis_text.replace("TextBlock(text='", "")
         analysis_text = analysis_text.replace("', type='text')", "")
         analysis_text = analysis_text.replace("\\n", "\n")
         analysis_text = analysis_text.replace("\\'", "'")
 
-        # Split the text into sections
-        sections = analysis_text.split("\n\n")
+        # Split into paragraphs
+        paragraphs = [p.strip() for p in analysis_text.split("\n\n") if p.strip()]
 
-        for section in sections:
-            if section.strip():
-                if ":" in section:
-                    title, content = section.split(":", 1)
-                    st.markdown(f"**{title}:**")
-                    st.write(content)
-                else:
-                    st.write(section)
+        # Display each paragraph
+        for paragraph in paragraphs:
+            st.write(paragraph)
 
         st.divider()
         if st.button("Start Over"):
             st.session_state.clear()
             st.rerun()
+
+
+if __name__ == "__main__":
+    main()
 
 
 if __name__ == "__main__":
