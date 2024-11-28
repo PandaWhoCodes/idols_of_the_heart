@@ -13,31 +13,31 @@ questions = [
     {
         "question": "What is the one thing you most worry about losing?",
         "helper": "What one thing could you just absolutely not get along without? Your family? Your job? The love of your spouse? The respect of your kids?"
-    },
-    {
-        "question": "If you could change one thing about yourself right now, what would it be?",
-        "helper": "Would you lose thirty pounds? Would you change your looks? Your marital status? Your job? Your zip code? Would you have your kids come home? There is certainly nothing wrong with desiring to change our lives. But when we could't imagine being happy unless something changes, we have an idol."
-    },
-    {
-        "question": "What thing have you sacrificed the most for?",
-        "helper": "Sacrifice and worship almost always go hand in hand. What have you worked the hardest for? To get the scholarship? To obtain the perfect body? To land the job? To be the best in your field? To get to a certain income level? What you prize most is shown by what you pursue the hardest."
-    },
-    {
-        "question": "Who is there in your life that you feel like you can't forgive, and why?",
-        "helper": "An ex-husband ruined your reputation and stole the best years of your life? Your wife who cheated on you and publicly humiliated you? An irresponsible or unethical partner who ruined your business? A close friend who stole your boyfriend? A drunk driver who killed your child? When you cannot forgive someone, it is usually because they took something from you that you depended on for life, happiness, and security."
-    },
-    {
-        "question": "When do you feel the most significant?",
-        "helper": "When do you hold your head up the highest? What is there that you hope people find out about you? Do you constantly mention your job, or the job you think you're going to have when you graduate, or where you got your degree from? Are you always looking for ways to show off your house or car? Your identity is whatever makes you feel the mist significant. What makes you feel the most significant is what you put the most weight upon."
-    },
-    {
-        "question": "What triggers depression in you?",
-        "helper": "That your kids never call? The fact that your marriage doesn't look like it's ever going to get better? Is it that you have reached a certain age and still aren't married?  Is it when you don't get the recognition you know you deserve? Is it how little you've accomplished? Depression is triggered when something we deemed essential for life and happiness is denied to us."
-    },
-    {
-        "question": "Where do you turn for comfort when things are not going well?",
-        "helper": "Maybe you bury yourself in your work to numb the fact that your wife ignores you and your kids are drifting away from you. Or perhaps you find escape in the arms of a lover. Some sensual pleasure, like pornography or comfort food? Perhaps alcohol or drugs?"
-    }
+    # },
+    # {
+    #     "question": "If you could change one thing about yourself right now, what would it be?",
+    #     "helper": "Would you lose thirty pounds? Would you change your looks? Your marital status? Your job? Your zip code? Would you have your kids come home? There is certainly nothing wrong with desiring to change our lives. But when we could't imagine being happy unless something changes, we have an idol."
+    # },
+    # {
+    #     "question": "What thing have you sacrificed the most for?",
+    #     "helper": "Sacrifice and worship almost always go hand in hand. What have you worked the hardest for? To get the scholarship? To obtain the perfect body? To land the job? To be the best in your field? To get to a certain income level? What you prize most is shown by what you pursue the hardest."
+    # },
+    # {
+    #     "question": "Who is there in your life that you feel like you can't forgive, and why?",
+    #     "helper": "An ex-husband ruined your reputation and stole the best years of your life? Your wife who cheated on you and publicly humiliated you? An irresponsible or unethical partner who ruined your business? A close friend who stole your boyfriend? A drunk driver who killed your child? When you cannot forgive someone, it is usually because they took something from you that you depended on for life, happiness, and security."
+    # },
+    # {
+    #     "question": "When do you feel the most significant?",
+    #     "helper": "When do you hold your head up the highest? What is there that you hope people find out about you? Do you constantly mention your job, or the job you think you're going to have when you graduate, or where you got your degree from? Are you always looking for ways to show off your house or car? Your identity is whatever makes you feel the mist significant. What makes you feel the most significant is what you put the most weight upon."
+    # },
+    # {
+    #     "question": "What triggers depression in you?",
+    #     "helper": "That your kids never call? The fact that your marriage doesn't look like it's ever going to get better? Is it that you have reached a certain age and still aren't married?  Is it when you don't get the recognition you know you deserve? Is it how little you've accomplished? Depression is triggered when something we deemed essential for life and happiness is denied to us."
+    # },
+    # {
+    #     "question": "Where do you turn for comfort when things are not going well?",
+    #     "helper": "Maybe you bury yourself in your work to numb the fact that your wife ignores you and your kids are drifting away from you. Or perhaps you find escape in the arms of a lover. Some sensual pleasure, like pornography or comfort food? Perhaps alcohol or drugs?"
+    # }
 ]
 
 def init_session_state():
