@@ -93,7 +93,7 @@ def main():
             if answer:
                 st.session_state.answers[current_q["question"]] = answer
                 st.session_state.current_question += 1
-                st.experimental_rerun()
+                st.rerun()
             else:
                 st.warning("Please provide an answer before continuing.")
 
@@ -104,7 +104,7 @@ def main():
         analysis = get_idol_analysis(formatted_answers)
         st.session_state.analysis = analysis
         st.session_state.analysis_complete = True
-        st.experimental_rerun()
+        st.rerun()
 
     else:
         st.subheader("Analysis of Potential Heart Idols")
@@ -123,7 +123,7 @@ def main():
         st.divider()
         if st.button("Start Over", key="start_over"):
             st.session_state.clear()
-            st.experimental_rerun()
+            st.rerun()
 
 
 if __name__ == "__main__":
