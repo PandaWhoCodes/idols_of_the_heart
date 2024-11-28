@@ -72,23 +72,28 @@ def main():
         "Answer these questions honestly to help identify potential idols in your heart."
     )
 
-    init_session_state()
+    # Initialize session state only if not already initialized
+    if "current_question" not in st.session_state:
+        init_session_state()
 
     if st.session_state.current_question < len(questions):
         current_q = questions[st.session_state.current_question]
 
+        # Use unique keys for each element
+        question_key = f"question_{st.session_state.current_question}"
+        answer_key = f"answer_{st.session_state.current_question}"
+        button_key = f"button_{st.session_state.current_question}"
+
         st.subheader(current_q["question"])
         st.write(current_q["helper"])
 
-        answer = st.text_area(
-            "Your answer:", key=f"q_{st.session_state.current_question}"
-        )
+        answer = st.text_area("Your answer:", key=answer_key)
 
-        if st.button("Next"):
+        if st.button("Next", key=button_key):
             if answer:
                 st.session_state.answers[current_q["question"]] = answer
                 st.session_state.current_question += 1
-                st.rerun()
+                st.experimental_rerun()
             else:
                 st.warning("Please provide an answer before continuing.")
 
@@ -99,33 +104,26 @@ def main():
         analysis = get_idol_analysis(formatted_answers)
         st.session_state.analysis = analysis
         st.session_state.analysis_complete = True
-        st.rerun()
+        st.experimental_rerun()
 
     else:
         st.subheader("Analysis of Potential Heart Idols")
 
-        # Clean up the analysis text
         analysis_text = str(st.session_state.analysis)
         analysis_text = analysis_text.replace("TextBlock(text='", "")
         analysis_text = analysis_text.replace("', type='text')", "")
         analysis_text = analysis_text.replace("\\n", "\n")
         analysis_text = analysis_text.replace("\\'", "'")
 
-        # Split into paragraphs
         paragraphs = [p.strip() for p in analysis_text.split("\n\n") if p.strip()]
 
-        # Display each paragraph
-        for paragraph in paragraphs:
+        for i, paragraph in enumerate(paragraphs):
             st.write(paragraph)
 
         st.divider()
-        if st.button("Start Over"):
+        if st.button("Start Over", key="start_over"):
             st.session_state.clear()
-            st.rerun()
-
-
-if __name__ == "__main__":
-    main()
+            st.experimental_rerun()
 
 
 if __name__ == "__main__":
