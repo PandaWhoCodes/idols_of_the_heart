@@ -57,7 +57,7 @@ Responses:
 Please provide a thoughtful analysis of potential idols, explaining why they might be idols and offering gentle, Biblical guidance for addressing them."""
 
     response = anthropic.messages.create(
-        model="claude-3-opus-20241022",
+        model="claude-3-5-sonnet-20241022",
         max_tokens=5000,
         messages=[
             {"role": "user", "content": prompt}
